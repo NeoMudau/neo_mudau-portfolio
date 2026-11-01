@@ -1,338 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neo Mudau — Full Stack Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neo Mudau | Junior Full Stack Developer, PHP (Symfony)</title>
+<meta name="description" content="Pfarelo Neo Mudau is a Johannesburg-based junior full stack developer building secure PHP and Symfony backends, REST APIs and payment integrations.">
+<meta property="og:title" content="Neo Mudau | Junior Full Stack Developer">
+<meta property="og:description" content="PHP and Symfony backends, REST APIs, webhooks and Splunk transaction monitoring.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef1f6; --ink:#101828; --muted:#475467; --line:#cfd6e4;
+  --accent:#1d3fd8; --rail:#101828; --rail-text:#f2f4f7; --rail-muted:#aab3c5; --rail-link:#9db8ff; --ok:#3ddc97;
+  --display:"Bricolage Grotesque","Segoe UI",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.65 var(--body)}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.layout{display:grid;grid-template-columns:minmax(300px,360px) 1fr;min-height:100vh}
+
+/* rail */
+.rail{background:var(--rail);color:var(--rail-text);padding:3rem 2rem;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:1.5rem}
+.rail a{color:var(--rail-link)}
+.rail :focus-visible{outline-color:var(--rail-link)}
+.portrait{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid var(--rail-muted)}
+.rail h1{font:700 2.4rem/1.05 var(--display);margin:0;letter-spacing:-.02em}
+.role{margin:.4rem 0 0;font-weight:500;color:var(--rail-link)}
+.intro{margin:0;color:var(--rail-muted);font-size:.95rem}
+.status{display:flex;align-items:center;gap:.6rem;font-size:.9rem;margin:0}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+.rail nav ul,.links{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.rail nav a{color:var(--rail-text);text-decoration:none;font-weight:500}
+.rail nav a:hover{color:var(--rail-link);text-decoration:underline}
+.links{margin-top:auto;font-size:.92rem}
+.cv{display:inline-block;background:var(--rail-text);color:var(--rail)!important;font-weight:600;text-decoration:none;padding:.6rem 1.1rem;border-radius:6px;justify-self:start}
+.cv:hover{background:var(--rail-link)}
+
+/* content */
+main{padding:3.5rem clamp(1.25rem,5vw,4.5rem) 3rem;max-width:62rem}
+section{margin-bottom:3.5rem}
+h2{font:700 1.9rem/1.15 var(--display);letter-spacing:-.015em;margin:0 0 1.25rem}
+h3{font:700 1.2rem/1.3 var(--display);margin:0}
+.lead{font-size:1.15rem;max-width:44rem;margin:0 0 3rem}
+.item{border-top:1px solid var(--line);padding:1.4rem 0}
+.item:last-child{border-bottom:1px solid var(--line)}
+.meta{margin:.2rem 0 .6rem;color:var(--muted);font-size:.9rem}
+.item p{margin:.4rem 0;max-width:46rem}
+.stack{color:var(--muted);font-size:.9rem;font-style:italic}
+.item ul{margin:.5rem 0 0;padding-left:1.2rem;max-width:46rem}
+.item li{margin:.35rem 0}
+.private{font-size:.9rem;color:var(--muted)}
+.badge{display:inline-block;font-size:.8rem;font-weight:600;border:1px solid var(--accent);color:var(--accent);border-radius:99px;padding:.05rem .6rem;margin-left:.4rem;vertical-align:middle}
+dl.skills{margin:0;display:grid;grid-template-columns:minmax(150px,200px) 1fr;gap:0}
+dl.skills dt,dl.skills dd{margin:0;padding:.8rem 0;border-top:1px solid var(--line)}
+dl.skills dt{font-weight:600}
+dl.skills dd{color:var(--muted)}
+dl.skills dt:last-of-type,dl.skills dd:last-of-type{border-bottom:1px solid var(--line)}
+.grow{columns:2;column-gap:2.5rem;padding-left:1.2rem;margin:0;max-width:46rem}
+.grow li{margin:.35rem 0;break-inside:avoid}
+footer{border-top:1px solid var(--line);padding-top:1.25rem;color:var(--muted);font-size:.9rem}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .rail{position:static;height:auto;padding:2rem 1.25rem}
+  .links{margin-top:0}
+  main{padding-top:2.5rem}
+}
+@media (max-width:560px){
+  dl.skills{grid-template-columns:1fr}
+  dl.skills dd{border-top:0;padding-top:0}
+  .grow{columns:1}
+}
+</style>
 </head>
 <body>
+<div class="layout">
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <span class="nav-logo">NM<span class="accent">.</span></span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
+<header class="rail">
+  <img class="portrait" src="OIP.webp" alt="Portrait of Neo Mudau" width="88" height="88" onerror="this.remove()">
+  <div>
+    <h1>Pfarelo Neo Mudau</h1>
+    <p class="role">Junior Full Stack Developer, PHP (Symfony)</p>
+  </div>
+  <p class="intro">Computer Science graduate building secure backends, REST APIs and payment integrations. Twelve months of professional experience at Mfundopedia.</p>
+  <p class="status">Available immediately in Johannesburg</p>
+  <nav aria-label="Sections">
     <ul>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#experience" class="mobile-link">Experience</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
     </ul>
-  </div>
+  </nav>
+  <ul class="links">
+    <li><a href="mailto:Pfarelomudau018@gmail.com">Pfarelomudau018@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/codecraftedneo/" target="_blank" rel="noopener">linkedin.com/in/codecraftedneo</a></li>
+    <li><a href="https://github.com/NeoMudau" target="_blank" rel="noopener">github.com/NeoMudau</a></li>
+    <li><a class="cv" href="Neo_Mudau_CV.pdf" download>Download my CV</a></li>
+  </ul>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="container hero-inner">
-      <div class="hero-eyebrow reveal">
-        <span class="dot"></span> Available for opportunities
-      </div>
-      <h1 class="hero-name reveal">
-        Neo<br />
-        <span class="accent">Pfarelo</span><br />
-        Mudau
-      </h1>
-      <div class="hero-right reveal">
-        <p class="hero-title">Full Stack Developer<br /><span class="accent">Backend &amp; API Specialist</span></p>
-        <p class="hero-tagline">I build scalable backends and clean APIs that power real-world systems.</p>
-        <p class="hero-location">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          Johannesburg, South Africa
-        </p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><span class="stat-num">40%</span><span class="stat-label">Query improvement</span></div>
-          <div class="stat"><span class="stat-num">30%</span><span class="stat-label">Sync error reduction</span></div>
-          <div class="stat"><span class="stat-num">3rd</span><span class="stat-label">MAISH Hackathon</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="scroll-indicator">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
+<main>
+  <p class="lead">I work mainly in PHP and Symfony. I enjoy backend development, database design and API work, and I am looking for a junior PHP, Symfony, web, software or API developer role.</p>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article class="item">
+      <h3>LoanApp</h3>
+      <p class="meta">Personal project, November 2025</p>
+      <p>A loan management application for borrower registration, loan applications and administration. An EasyAdmin dashboard lets administrators manage customers and loans, and role-based access separates super administrators, administrators and borrowers. Docker and Doctrine migrations keep the setup consistent.</p>
+      <p class="stack">PHP 8.2, Symfony 7, EasyAdmin, PostgreSQL, Twig, Docker</p>
+      <p><a href="https://github.com/NeoMudau/LoanApp" target="_blank" rel="noopener">View LoanApp on GitHub</a></p>
+    </article>
+
+    <article class="item">
+      <h3>Groove Buddy</h3>
+      <p class="meta">Personal project, April 2026</p>
+      <p>An event discovery and management platform for attendees, event organisers and administrators. Organisers create events and manage artists and images, attendees browse, favourite and share events, and organisers see analytics on views, favourites and shares.</p>
+      <p class="stack">PHP 8.2, Symfony 7, Doctrine ORM, PostgreSQL, Twig, Bootstrap</p>
+      <p><a href="https://github.com/NeoMudau/groove-buddy" target="_blank" rel="noopener">View Groove Buddy on GitHub</a></p>
+    </article>
+
+    <article class="item">
+      <h3>Mental health chatbot <span class="badge">3rd place, MAISH Hackathon</span></h3>
+      <p class="meta">Hackathon project, November 2024</p>
+      <p>A multilingual chatbot that supports mental health conversations in African languages. It detects the user's language with rules instead of paid NLP APIs and lets people switch language mid-conversation, for example from English to isiZulu. Built and presented in three days.</p>
+      <p class="stack">JavaScript, HTML, CSS, rule-based language detection</p>
+      <p><a href="https://github.com/NeoMudau/Sizwe-Chatbot" target="_blank" rel="noopener">View the chatbot on GitHub</a></p>
+    </article>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-frame">
-          <img src="OIP.webp" alt="Neo Mudau" class="about-img" />
-          <div class="img-accent-border"></div>
-        </div>
-        <div class="about-badge">
-          <span>🏆</span>
-          <span>MAISH Hackathon<br/>3rd Place 2024</span>
-        </div>
-      </div>
-      <div class="about-content reveal">
-        <p class="section-label">// about me</p>
-        <h2>Crafting systems that <span class="accent">scale</span></h2>
-        <p>I'm a Full Stack Developer based in Johannesburg, South Africa, currently completing a Diploma in Computer Science at the Tshwane University of Technology (2022–2026). My focus is backend engineering — building clean, efficient systems that hold up under pressure.</p>
-        <p>Through my WIL internship at Mfundopedia, I improved query performance by 25% and reduced data sync issues by 30% on production systems. I also placed 3rd in the MAISH Hackathon 2024, developing a mental health chatbot that supports African languages — built on zero budget and genuine problem-solving.</p>
-        <p>I care deeply about writing code that's readable, testable, and built to last.</p>
-        <a href="mailto:Pfarelomudau018@gmail.com" class="btn btn-primary" style="margin-top:1.5rem;">Get in touch</a>
-      </div>
-    </div>
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <article class="item">
+      <h3>Full Stack Developer Intern (WIL)</h3>
+      <p class="meta">Mfundopedia, August 2025 to July 2026</p>
+      <ul>
+        <li>Built independent Symfony bundles for application workflow progression and for time extensions that stop applications being archived. Each has its own routes, pages, entities and migrations.</li>
+        <li>Built a real-time transaction monitoring integration between a payment aggregator and Splunk, using webhooks and the Splunk API to receive transactions securely as they happened.</li>
+        <li>Set up event-driven anomaly and risk checks in Splunk, reported findings back to the aggregator, and built dashboards to visualise transactions and monitor fraud detection.</li>
+        <li>Developed RESTful APIs, plus authentication and role-based access control for three user roles.</li>
+        <li>Designed relational schemas with Doctrine ORM, integrated third-party and payment APIs, and built Twig and JavaScript interfaces.</li>
+        <li>Debugged and supported live applications. Gained exposure to Docker, Jenkins and CI/CD workflows.</li>
+      </ul>
+    </article>
+
+    <article class="item">
+      <h3>Retail Sales Assistant</h3>
+      <p class="meta">Sportscene, June to December 2023</p>
+      <p>Served customers, managed inventory and handled cash during high-volume periods.</p>
+    </article>
   </section>
 
-  <!-- SKILLS -->
-  <section class="skills" id="skills">
-    <div class="container">
-      <p class="section-label reveal">// skills</p>
-      <h2 class="reveal">What I work with</h2>
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <div class="skill-icon">{ }</div>
-          <h3>Languages</h3>
-          <ul>
-            <li>Java</li><li>PHP</li><li>JavaScript</li>
-            <li>SQL</li><li>Kotlin</li><li>HTML</li><li>CSS</li>
-          </ul>
-        </div>
-        <div class="skill-card reveal">
-          <div class="skill-icon">⚙</div>
-          <h3>Frameworks</h3>
-          <ul>
-            <li>Spring Boot</li><li>Symfony</li>
-            <li>Tailwind CSS</li><li>Bootstrap</li>
-          </ul>
-        </div>
-        <div class="skill-card reveal">
-          <div class="skill-icon">🗄</div>
-          <h3>Databases</h3>
-          <ul>
-            <li>PostgreSQL</li><li>MySQL</li><li>MSQL</li><li>Oracle</li>
-          </ul>
-        </div>
-        <div class="skill-card reveal">
-          <div class="skill-icon">🔧</div>
-          <h3>Tools</h3>
-          <ul>
-            <li>Git</li><li>Docker</li><li>Jenkins</li>
-            <li>VS Code</li><li>Android Studio</li>
-          </ul>
-        </div>
-        <div class="skill-card reveal">
-          <div class="skill-icon">🧠</div>
-          <h3>Concepts</h3>
-          <ul>
-            <li>REST APIs</li><li>RBAC</li><li>MVC</li>
-            <li>CI/CD</li><li>Agile / Scrum</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Backend</dt>
+      <dd>PHP, Symfony, Doctrine ORM, Twig, RESTful APIs, API integrations, webhooks, role-based access control, object-oriented programming</dd>
+      <dt>Frontend</dt>
+      <dd>HTML, CSS, JavaScript, responsive web development, Twig templating</dd>
+      <dt>Databases</dt>
+      <dd>PostgreSQL, MySQL, Oracle SQL, PL/SQL, database design, query optimisation</dd>
+      <dt>Tools and platforms</dt>
+      <dd>Git and GitHub, Docker, Linux, Splunk, CI/CD fundamentals</dd>
+      <dt>Engineering practice</dt>
+      <dd>Authentication and authorisation, application security fundamentals, debugging and troubleshooting, third-party service integrations, Agile and Scrum, SDLC, modular Symfony bundles</dd>
+    </dl>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <p class="section-label reveal">// projects</p>
-      <h2 class="reveal">Things I've built</h2>
-      <div class="projects-grid">
-
-        <div class="project-card reveal" onclick="openModal('clinic')">
-          <div class="project-top">
-            <span class="project-tag">Java · PostgreSQL</span>
-            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </div>
-          <h3>Clinic Management Dashboard</h3>
-          <p>A full-featured patient data management system with role-based access control and optimised database queries for a healthcare environment.</p>
-          <div class="project-metrics">
-            <span class="metric"><span class="metric-num">40%</span> query performance improvement</span>
-            <span class="metric"><span class="metric-num">RBAC</span> multi-role security</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-cta">View Details →</span>
-            <a href="https://github.com/NeoMudau" target="_blank" class="github-link" onclick="event.stopPropagation()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-
-        <div class="project-card reveal" onclick="openModal('chatbot')">
-          <div class="project-top">
-            <span class="project-tag">JavaScript · NLP</span>
-            <svg class="arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </div>
-          <h3>Mental Health Chatbot</h3>
-          <p>A hackathon-built chatbot designed to support mental health conversations in African languages, making psychological support more accessible across South Africa.</p>
-          <div class="project-metrics">
-            <span class="metric"><span class="metric-num">🏆 3rd</span> MAISH Hackathon 2024</span>
-            <span class="metric"><span class="metric-num">Multi-lang</span> African language support</span>
-          </div>
-          <div class="project-footer">
-            <span class="project-cta">View Details →</span>
-            <a href="https://github.com/NeoMudau" target="_blank" class="github-link" onclick="event.stopPropagation()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
+  <section id="education">
+    <h2>Education and recognition</h2>
+    <article class="item">
+      <h3>Diploma in Computer Science</h3>
+      <p class="meta">Tshwane University of Technology, January 2022 to July 2026, completed, NQF level 6</p>
+      <p>Coursework included Java and Java EE (JDBC, JPA, EJB, Servlets, JSP), Oracle PL/SQL, Linux, networking and information security.</p>
+    </article>
+    <article class="item">
+      <h3>Scrum Fundamentals Certified</h3>
+      <p class="meta">Scrum Alliance, 2024</p>
+    </article>
+    <article class="item">
+      <h3>3rd place, MAISH Hackathon 2024</h3>
+      <p class="meta">For the multilingual mental health chatbot</p>
+    </article>
   </section>
 
-  <!-- MODAL -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true">
-    <div class="modal-backdrop" onclick="closeModal()"></div>
-    <div class="modal-content">
-      <button onclick="closeModal()" class="modal-close" aria-label="Close">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-      <div id="modal-body"></div>
-    </div>
-  </div>
-
-  <!-- EXPERIENCE -->
-  <section class="experience" id="experience">
-    <div class="container">
-      <p class="section-label reveal">// experience</p>
-      <h2 class="reveal">Where I've worked</h2>
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-body">
-            <div class="timeline-header">
-              <div>
-                <h3>Full Stack Developer Intern</h3>
-                <p class="timeline-company">Mfundopedia</p>
-              </div>
-              <span class="timeline-date">Aug 2025 – Jul 2026</span>
-            </div>
-            <ul class="timeline-list">
-              <li>Improved database query performance by <strong class="accent">25%</strong> through query optimisation and indexing strategies.</li>
-              <li>Reduced data synchronisation errors by <strong class="accent">30%</strong> across production systems.</li>
-              <li>Built and maintained full-stack features across backend APIs and frontend interfaces.</li>
-              <li>Collaborated in an Agile/Scrum team with sprint planning and code reviews.</li>
-            </ul>
-            <div class="timeline-tags">
-              <span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>REST APIs</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot timeline-dot--muted"></div>
-          <div class="timeline-body">
-            <div class="timeline-header">
-              <div>
-                <h3>Retail Assistant</h3>
-                <p class="timeline-company">Sportscene</p>
-              </div>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Customer-facing role demonstrating strong work ethic, communication, and reliability under pressure.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
+  <section id="growing">
+    <h2>What I am learning next</h2>
+    <ul class="grow">
+      <li>Advanced PHP and Symfony</li>
+      <li>Backend architecture and API engineering</li>
+      <li>Database optimisation and SQL</li>
+      <li>Cloud technologies and AWS</li>
+      <li>DevOps and CI/CD practices</li>
+      <li>Modern frontend development</li>
+    </ul>
   </section>
 
-  <!-- EDUCATION & ACHIEVEMENTS -->
-  <section class="education" id="education">
-    <div class="container edu-grid">
-      <div class="reveal">
-        <p class="section-label">// education &amp; certs</p>
-        <h2>Qualifications</h2>
-        <div class="edu-card">
-          <div class="edu-icon">🎓</div>
-          <div>
-            <h3>Diploma in Computer Science</h3>
-            <p class="edu-school">Tshwane University of Technology</p>
-            <p class="edu-date">2022 – 2026</p>
-          </div>
-        </div>
-        <div class="edu-card">
-          <div class="edu-icon">📜</div>
-          <div>
-            <h3>Scrum Fundamentals Certified</h3>
-            <p class="edu-school">Scrum Alliance</p>
-            <p class="edu-date">2024</p>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="section-label">// achievements</p>
-        <h2>Recognition</h2>
-        <div class="achievement-card">
-          <div class="achievement-trophy">🏆</div>
-          <div>
-            <h3>3rd Place — MAISH Hackathon 2024</h3>
-            <p>Designed and built a zero-budget mental health chatbot supporting African languages. Competed against university teams across South Africa and placed in the top 3.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="container contact-inner">
-      <p class="section-label reveal">// contact</p>
-      <h2 class="reveal">Let's build something <span class="accent">together</span></h2>
-      <p class="contact-sub reveal">I'm currently open to internship, graduate, and junior developer opportunities. Feel free to reach out.</p>
-      <div class="contact-links reveal">
-        <a href="mailto:Pfarelomudau018@gmail.com" class="contact-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <div>
-            <span class="contact-label">Email</span>
-            <span class="contact-value">Pfarelomudau018@gmail.com</span>
-          </div>
-        </a>
-        <a href="https://linkedin.com/in/codecraftedneo" target="_blank" class="contact-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <div>
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">linkedin.com/in/codecraftedneo</span>
-          </div>
-        </a>
-        <a href="https://github.com/NeoMudau" target="_blank" class="contact-card">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          <div>
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">github.com/NeoMudau</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <p>Designed &amp; built by <span class="accent">Neo Pfarelo Mudau</span> · 2025</p>
-    </div>
+  <footer>
+    <p>Pfarelo Neo Mudau, Johannesburg. Email <a href="mailto:Pfarelomudau018@gmail.com">Pfarelomudau018@gmail.com</a>. 2026.</p>
   </footer>
+</main>
 
-  <script src="script.js"></script>
+</div>
 </body>
 </html>
