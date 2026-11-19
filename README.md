@@ -65,9 +65,6 @@ A loan management application developed using PHP and Symfony.
 ### Groove Buddy
 A web development project focused on building an interactive application.
 
-### Payment Aggregator & Splunk Integration
-A transaction monitoring project exploring payment integrations, event reporting and security monitoring using Splunk.
-
 ### Mental Health Chatbot
 A multilingual mental health chatbot developed during a three-day hackathon. The project incorporated rule-based language detection and African language support.
 
